@@ -1,0 +1,82 @@
+<div class="w-screen h-screen p-4 grid gap-y-4 content-start">
+  <h3 class="self-start">Images</h3>
+  <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
+    <p-table [value]="images">
+      <ng-template #header>
+        <tr>
+          <th class="min-w-[80px] max-w-[80px] text-center">Dive</th>
+          <th>Image Tag</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-image>
+        <tr>
+          <td class="min-w-[80px] max-w-[80px] text-center">
+            <button (click)="dive(image.Id)"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 py-1 px-2 rounded">
+              Dive
+            </button>
+          </td>
+          <td title="Id: {{ image.Id }}">
+            @if (image.RepoTags && image.RepoTags.length > 0) {
+              <ul>
+                @for (repoTag of image.RepoTags; track repoTag) {
+                  <li>{{ repoTag }}</li>
+                }
+              </ul>
+            } @else {
+              <ul>
+                <li>{{ image.Id }}</li>
+              </ul>
+            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <h3 class="self-start">Containers</h3>
+  <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
+    <p-table [value]="containers">
+      <ng-template #header>
+        <tr>
+          <th class="min-w-[80px] max-w-[80px] text-center">Dive</th>
+          <th>Image Tag</th>
+          <th>Container</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-container>
+        <tr>
+          <td class="min-w-[80px] max-w-[80px] text-center">
+            <button (click)="dive(container.ImageID)"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 py-1 px-2 rounded">
+              Dive
+            </button>
+          </td>
+          <td title="{{ container.ImageID }}">
+            @if (container.Image) {
+              <ul>
+                <li>{{ container.Image }}</li>
+              </ul>
+            } @else {
+              <ul>
+                <li>{{ container.ImageID }}</li>
+              </ul>
+            }
+          </td>
+          <td title="Id: {{ container.Id }}">
+            @if (container.Names && container.Names.length > 0) {
+              <ul>
+                @for (name of container.Names; track name) {
+                  <li>{{ name }}</li>
+                }
+              </ul>
+            } @else {
+              <ul>
+                <li>{{ container.Id }}</li>
+              </ul>
+            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
