@@ -1,0 +1,43 @@
+{
+  "icon": "dive.svg",
+  "vm": {
+    "composefile": "docker-compose.yaml"
+  },
+  "ui": {
+    "dashboard-tab": {
+      "title": "Dive",
+      "src": "index.html",
+      "root": "ui"
+    }
+  },
+  "host": {
+    "binaries": [
+      {
+        "darwin": [
+          {
+            "path": "/dive/darwin/arm64/dive"
+          },
+          {
+            "path": "/dive/linux/arm64/launchdive"
+          }
+        ],
+        "windows": [
+          {
+            "path": "/dive/windows/amd64/dive.exe"
+          },
+          {
+            "path": "/dive/linux/amd64/launchdive.bat"
+          }
+        ],
+        "linux": [
+          {
+            "path": "/dive/linux/amd64/dive"
+          },
+          {
+            "path": "/dive/linux/amd64/launchdive"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -4,15 +4,15 @@
     <p-table [value]="images">
       <ng-template #header>
         <tr>
-          <th class="min-w-[80px] max-w-[80px] text-center">Dive</th>
+          <th class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center">Dive</th>
           <th>Image Tag</th>
         </tr>
       </ng-template>
       <ng-template #body let-image>
         <tr>
-          <td class="min-w-[80px] max-w-[80px] text-center">
+          <td class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center">
             <button (click)="dive(image.Id)"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 py-1 px-2 rounded">
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-1 py-1 px-2 rounded">
               Dive
             </button>
           </td>
@@ -34,20 +34,20 @@
     </p-table>
   </div>
   <h3 class="self-start">Containers</h3>
-  <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
+  <div class="self-stretch min-w-[98vw] !w-[80px] max-w-[98vw] overflow-scroll">
     <p-table [value]="containers">
       <ng-template #header>
         <tr>
-          <th class="min-w-[80px] max-w-[80px] text-center">Dive</th>
+          <th class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center">Dive</th>
           <th>Image Tag</th>
           <th>Container</th>
         </tr>
       </ng-template>
       <ng-template #body let-container>
         <tr>
-          <td class="min-w-[80px] max-w-[80px] text-center">
+          <td class="!min-w-[60px] !max-w-[60px] !text-center">
             <button (click)="dive(container.ImageID)"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 py-1 px-2 rounded">
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-1 py-1 px-2 rounded">
               Dive
             </button>
           </td>
