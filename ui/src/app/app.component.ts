@@ -59,6 +59,22 @@ export class AppComponent implements OnInit {
   async dive(Id: string) {
     await dive(this.ddClient, Id);
   }
+
+  async navigateToImages() {
+    await this.ddClient.desktopUI.navigate.viewImages();
+  }
+
+  async navigateToImage(Id: string, Tag: string) {
+    await this.ddClient.desktopUI.navigate.viewImage(Id, Tag);
+  }
+
+  async navigateToContainers() {
+    await this.ddClient.desktopUI.navigate.viewContainers();
+  }
+
+  async navigateToContainer(Id: string) {
+    await this.ddClient.desktopUI.navigate.viewContainer(Id);
+  }
 }
 /*
 Image:

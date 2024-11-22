@@ -1,5 +1,7 @@
 <div class="w-screen h-screen p-4 grid gap-y-4 content-start">
-  <h2 class="self-start">Images</h2>
+  <h2 class="self-start">
+    <button (click)="navigateToImages()" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>
+    Images</h2>
   <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
     <p-table [value]="images">
       <ng-template #header>
@@ -12,7 +14,7 @@
         <tr>
           <td class="!min-w-[80px] !w-[80px] !max-w-[80px] !text-center">
             <button (click)="dive(image.Id)"
-                    class="hover:bg-blue-100 text-white font-bold my-1 py-2 px-2 rounded">
+                    class="hover:bg-blue-100 text-white font-bold my-1 p-2 rounded">
               <img width="32" src="icons/dive.svg" alt="Dive" title="Dive"/>
             </button>
           </td>
@@ -20,12 +22,16 @@
             @if (image.RepoTags && image.RepoTags.length > 0) {
               <ul>
                 @for (repoTag of image.RepoTags; track repoTag) {
-                  <li>{{ repoTag }}</li>
+                  <li>
+<!--                    <button (click)="navigateToImage(image.Image, image.RepoTags[0])" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                    {{ repoTag }}</li>
                 }
               </ul>
             } @else {
               <ul>
-                <li>{{ image.Id }}</li>
+                <li>
+<!--                  <button (click)="navigateToImage(image.Image, image.RepoTags[0])" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                  {{ image.Id }}</li>
               </ul>
             }
           </td>
@@ -33,7 +39,9 @@
       </ng-template>
     </p-table>
   </div>
-  <h2 class="self-start">Containers</h2>
+  <h2 class="self-start">
+    <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
+    Containers</h2>
   <div class="self-stretch min-w-[98vw] !w-[80px] max-w-[98vw] overflow-scroll">
     <p-table [value]="containers">
       <ng-template #header>
@@ -47,18 +55,22 @@
         <tr>
           <td class="!min-w-[80px] !max-w-[80px] !text-center">
             <button (click)="dive(container.ImageID)"
-                    class="hover:bg-blue-100 text-white font-bold my-1 py-2 px-2 rounded">
+                    class="hover:bg-blue-100 text-white font-bold my-1 p-2 rounded">
               <img width="32" src="icons/dive.svg" alt="Dive" title="Dive"/>
             </button>
           </td>
           <td title="{{ container.ImageID }}">
             @if (container.Image) {
               <ul>
-                <li>{{ container.Image }}</li>
+                <li>
+<!--                  <button (click)="navigateToImage(container.ImageID, container.Image)" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                  {{ container.Image }}</li>
               </ul>
             } @else {
               <ul>
-                <li>{{ container.ImageID }}</li>
+                <li>
+<!--                  <button (click)="navigateToImage(container.ImageID, container.Image)" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                  {{ container.ImageID }}</li>
               </ul>
             }
           </td>
@@ -66,7 +78,9 @@
             @if (container.Names && container.Names.length > 0) {
               <ul>
                 @for (name of container.Names; track name) {
-                  <li>{{ name }}</li>
+                  <li>
+                    <button (click)="navigateToContainer(container.Id)" class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
+                    {{ name }}</li>
                 }
               </ul>
             } @else {
