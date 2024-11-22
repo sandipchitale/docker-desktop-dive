@@ -23,14 +23,14 @@
               <ul>
                 @for (repoTag of image.RepoTags; track repoTag) {
                   <li>
-<!--                    <button (click)="navigateToImage(image.Image, image.RepoTags[0])" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                    <button disabled (click)="navigateToImage(image.Image, image.RepoTags[0])" class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
                     {{ repoTag }}</li>
                 }
               </ul>
             } @else {
               <ul>
                 <li>
-<!--                  <button (click)="navigateToImage(image.Image, image.RepoTags[0])" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                  <button disabled (click)="navigateToImage(image.Image, image.RepoTags[0])" class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
                   {{ image.Id }}</li>
               </ul>
             }
@@ -63,13 +63,13 @@
             @if (container.Image) {
               <ul>
                 <li>
-<!--                  <button (click)="navigateToImage(container.ImageID, container.Image)" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                  <button disabled (click)="navigateToImage(container.ImageID, container.Image)" class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
                   {{ container.Image }}</li>
               </ul>
             } @else {
               <ul>
                 <li>
-<!--                  <button (click)="navigateToImage(container.ImageID, container.Image)" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>-->
+                  <button disabled (click)="navigateToImage(container.ImageID, container.Image)" class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
                   {{ container.ImageID }}</li>
               </ul>
             }
