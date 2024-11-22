@@ -36,14 +36,25 @@ export class AppComponent implements OnInit {
   protected containers: Container[] = [];
 
   ngOnInit(): void {
-    console.log("AppComponent ngOnInit");
-    (async () => {
-      this.images = (await images(this.ddClient) as Image[]);
-      this.containers = (await containers(this.ddClient) as Container[]);
-    })();
+    this.refresh();
   }
 
   protected readonly Object = Object;
+
+  async refresh() {
+    this.images = (await images(this.ddClient) as Image[]);
+    this.images.sort((aImage, bImage) => {
+      const aDisplayValue = (aImage.RepoTags && aImage.RepoTags.length > 0) ? aImage.RepoTags[0] : aImage.Id;
+      const bDisplayValue = (bImage.RepoTags && bImage.RepoTags.length > 0) ? bImage.RepoTags[0] : bImage.Id;
+      return aDisplayValue.localeCompare(bDisplayValue);
+    });
+    this.containers = (await containers(this.ddClient) as Container[]);
+    this.containers.sort((aContainer, bContainer) => {
+      const aDisplayValue = (aContainer.Image) ? aContainer.Image : aContainer.ImageID;
+      const bDisplayValue = (bContainer.Image) ? bContainer.Image : bContainer.ImageID;
+      return aDisplayValue.localeCompare(bDisplayValue);
+    });
+  }
 
   async dive(Id: string) {
     await dive(this.ddClient, Id);

@@ -1,5 +1,5 @@
 <div class="w-screen h-screen p-4 grid gap-y-4 content-start">
-  <h3 class="self-start">Images</h3>
+  <h2 class="self-start">Images</h2>
   <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
     <p-table [value]="images">
       <ng-template #header>
@@ -13,7 +13,7 @@
           <td class="!min-w-[80px] !w-[80px] !max-w-[80px] !text-center">
             <button (click)="dive(image.Id)"
                     class="hover:bg-blue-100 text-white font-bold my-1 py-2 px-2 rounded">
-              <img width="32" src="icons/dive.svg" title="Dive"/>
+              <img width="32" src="icons/dive.svg" alt="Dive" title="Dive"/>
             </button>
           </td>
           <td title="Id: {{ image.Id }}">
@@ -33,7 +33,7 @@
       </ng-template>
     </p-table>
   </div>
-  <h3 class="self-start">Containers</h3>
+  <h2 class="self-start">Containers</h2>
   <div class="self-stretch min-w-[98vw] !w-[80px] max-w-[98vw] overflow-scroll">
     <p-table [value]="containers">
       <ng-template #header>
@@ -48,7 +48,7 @@
           <td class="!min-w-[80px] !max-w-[80px] !text-center">
             <button (click)="dive(container.ImageID)"
                     class="hover:bg-blue-100 text-white font-bold my-1 py-2 px-2 rounded">
-              <img width="32" src="icons/dive.svg" title="Dive"/>
+              <img width="32" src="icons/dive.svg" alt="Dive" title="Dive"/>
             </button>
           </td>
           <td title="{{ container.ImageID }}">
