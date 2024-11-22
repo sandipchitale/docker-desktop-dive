@@ -12,8 +12,8 @@
         <tr>
           <td class="!min-w-[80px] !w-[80px] !max-w-[80px] !text-center">
             <button (click)="dive(image.Id)"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-1 py-1 px-2 rounded">
-              Dive
+                    class="hover:bg-blue-100 text-white font-bold my-1 py-2 px-2 rounded">
+              <img width="32" src="icons/dive.svg" title="Dive"/>
             </button>
           </td>
           <td title="Id: {{ image.Id }}">
@@ -47,8 +47,8 @@
         <tr>
           <td class="!min-w-[80px] !max-w-[80px] !text-center">
             <button (click)="dive(container.ImageID)"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold my-1 py-1 px-2 rounded">
-              Dive
+                    class="hover:bg-blue-100 text-white font-bold my-1 py-2 px-2 rounded">
+              <img width="32" src="icons/dive.svg" title="Dive"/>
             </button>
           </td>
           <td title="{{ container.ImageID }}">
