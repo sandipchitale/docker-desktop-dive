@@ -1,4 +1,4 @@
-IMAGE?=sandipchitale/docker-dive
+IMAGE?=sandipchitale/docker-desktop-dive
 TAG?=1.0.0
 
 BUILDER=buildx-multi-arch

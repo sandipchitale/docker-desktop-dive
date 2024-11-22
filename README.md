@@ -4,13 +4,13 @@
 
 ## Without debug mode
 
-- make && docker extension install sandipchitale/docker-dive:1.0.0 -f
-- make && docker extension update sandipchitale/docker-dive:1.0.0 -f
+- make && docker extension install sandipchitale/docker-desktop-dive:1.0.0 -f
+- make && docker extension update sandipchitale/docker-desktop-dive:1.0.0 -f
 
 ## With debug mode
 
-- make && docker extension install sandipchitale/docker-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-dive
-- make && docker extension update sandipchitale/docker-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-dive
+- make && docker extension install sandipchitale/docker-desktop-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-desktop-dive
+- make && docker extension update sandipchitale/docker-desktop-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-desktop-dive
 
 This repository defines an example of a Docker extension. The files in this repository have been automatically generated as a result of running `docker extension init`.
 
@@ -42,13 +42,13 @@ You can use `docker` to build, install and push your extension. Also, we provide
 To build the extension, use `make build-extension` **or**:
 
 ```shell
-  docker buildx build -t sandipchitale/docker-dive:latest . --load
+  docker buildx build -t sandipchitale/docker-desktop-dive:latest . --load
 ```
 
 To install the extension, use `make install-extension` **or**:
 
 ```shell
-  docker extension install sandipchitale/docker-dive:latest
+  docker extension install sandipchitale/docker-desktop-dive:latest
 ```
 
 > If you want to automate this command, use the `-f` or `--force` flag to accept the warning message.
@@ -71,19 +71,19 @@ This starts a development server that listens on port `3000`.
 You can now tell Docker Desktop to use this as the frontend source. In another terminal run:
 
 ```shell
-  docker extension dev ui-source sandipchitale/docker-dive:latest http://localhost:3000
+  docker extension dev ui-source sandipchitale/docker-desktop-dive:latest http://localhost:3000
 ```
 
 In order to open the Chrome Dev Tools for your extension when you click on the extension tab, run:
 
 ```shell
-  docker extension dev debug sandipchitale/docker-dive:latest
+  docker extension dev debug sandipchitale/docker-desktop-dive:latest
 ```
 
 Each subsequent click on the extension tab will also open Chrome Dev Tools. To stop this behaviour, run:
 
 ```shell
-  docker extension dev reset sandipchitale/docker-dive:latest
+  docker extension dev reset sandipchitale/docker-desktop-dive:latest
 ```
 
 ### Backend development (optional)
@@ -96,7 +96,7 @@ Whenever you make changes in the [backend](./backend) source code, you will need
 Use the `docker extension update` command to remove and re-install the extension automatically:
 
 ```shell
-docker extension update sandipchitale/docker-dive:latest
+docker extension update sandipchitale/docker-desktop-dive:latest
 ```
 
 > If you want to automate this command, use the `-f` or `--force` flag to accept the warning message.
@@ -108,7 +108,7 @@ docker extension update sandipchitale/docker-dive:latest
 To remove the extension:
 
 ```shell
-docker extension rm sandipchitale/docker-dive:latest
+docker extension rm sandipchitale/docker-desktop-dive:latest
 ```
 
 ## What's next?
