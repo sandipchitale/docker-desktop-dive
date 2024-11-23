@@ -1,7 +1,7 @@
 <div class="w-screen h-screen p-4 grid content-start">
-  <h1 class="self-start">
+  <div class="self-start text-xl font-bold">
     <button (click)="navigateToImages()" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>
-    Images</h1>
+    Images</div>
   <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
     <p-table [value]="images" [styleClass]="'p-datatable-sm'">
       <ng-template #header>
@@ -39,9 +39,9 @@
       </ng-template>
     </p-table>
   </div>
-  <h1 class="self-start">
+  <div class="self-start text-xl font-bold">
     <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
-    Containers</h1>
+    Containers</div>
   <div class="self-stretch min-w-[98vw] !w-[60px] max-w-[98vw] overflow-scroll">
     <p-table [value]="containers" [styleClass]="'p-datatable-sm'">
       <ng-template #header>
