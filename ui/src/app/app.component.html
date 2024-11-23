@@ -1,21 +1,29 @@
 <div class="w-screen h-screen p-4 grid content-start">
-  <div class="self-start text-xl font-bold">
-    <button (click)="navigateToImages()" class="hover:bg-blue-100 p-2" title="Go to image"><i class="pi pi-send"></i></button>
-    Images</div>
+  <div class="self-start py-2 text-xl font-bold">
+    <span>Images</span>
+  </div>
   <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
     <p-table [value]="images" [styleClass]="'p-datatable-sm'">
       <ng-template #header>
         <tr>
-          <th class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center"><span class="font-bold">Dive</span></th>
-          <th><span class="font-bold">Image Tag</span></th>
+          <th class="!min-w-[50px] !w-[50px] !max-w-[60px] !text-center">
+            <span class="font-bold">Dive</span></th>
+          <th>
+            <button (click)="navigateToImages()" class="hover:bg-blue-100 p-2" title="Go to Images"><i class="pi pi-send"></i></button>
+            <span class="ml-2 font-bold">Image Tags</span>
+          </th>
+          <th>
+            <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to Containers"><i class="pi pi-send"></i></button>
+            <span class="font-bold">Containers</span>
+          </th>
         </tr>
       </ng-template>
       <ng-template #body let-image>
         <tr>
-          <td class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center">
+          <td class="!min-w-[50px] !w-[50px] !max-w-[50px] !text-center">
             <button (click)="dive(image.Id)"
                     class="hover:bg-blue-100 text-white font-bold p-1 rounded">
-              <img width="24" src="icons/dive.svg" alt="Dive" title="Dive"/>
+              <img width="16" src="icons/dive.svg" alt="Dive" title="Dive"/>
             </button>
           </td>
           <td title="Id: {{ image.Id }}">
@@ -35,60 +43,22 @@
               </ul>
             }
           </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  <div class="self-start text-xl font-bold">
-    <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
-    Containers</div>
-  <div class="self-stretch min-w-[98vw] !w-[60px] max-w-[98vw] overflow-scroll">
-    <p-table [value]="containers" [styleClass]="'p-datatable-sm'">
-      <ng-template #header>
-        <tr>
-          <th class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center"><span class="font-bold">Dive</span></th>
-          <th><span class="font-bold">Image Tag</span></th>
-          <th><span class="font-bold">Container</span></th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-container>
-        <tr>
-          <td class="!min-w-[60px] !max-w-[60px] !text-center">
-            <button (click)="dive(container.ImageID)"
-                    class="hover:bg-blue-100 text-white font-bold p-1 rounded">
-              <img width="24" src="icons/dive.svg" alt="Dive" title="Dive"/>
-            </button>
-          </td>
-          <td title="{{ container.ImageID }}">
-            @if (container.Image) {
+          <td title="Id: {{ image.Id }}">
+            @if (imageToContainersMap.get(image.Id)) {
               <ul>
-                <li>
-                  <button disabled (click)="navigateToImage(container.ImageID, container.Image)"
-                          class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
-                  {{ container.Image }}</li>
-              </ul>
-            } @else {
-              <ul>
-                <li>
-                  <button disabled (click)="navigateToImage(container.ImageID, container.Image)"
-                          class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
-                  {{ container.ImageID }}</li>
-              </ul>
-            }
-          </td>
-          <td title="Id: {{ container.Id }}">
-            @if (container.Names && container.Names.length > 0) {
-              <ul>
-                @for (name of container.Names; track name) {
-                  <li>
-                    <button (click)="navigateToContainer(container.Id)"
-                            class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
-                    {{ name }}</li>
+                @for (container of imageToContainersMap.get(image.Id); track container) {
+                  @for (name of container.Names; track name) {
+                    <li>
+                      <button (click)="navigateToContainer(container.Id)"
+                              class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
+                      {{ name }}
+                    </li>
+                  }
                 }
               </ul>
             } @else {
               <ul>
-                <li>{{ container.Id }}</li>
+                <li>&nbsp;</li>
               </ul>
             }
           </td>

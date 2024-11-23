@@ -37,6 +37,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   private ddClient = createDockerDesktopClient();
   protected images: Image[] = [];
   protected containers: Container[] = [];
+  protected imageToContainersMap: Map<string, Container[]> = new Map<string, Container[]>();
 
   constructor(@Inject(DOCUMENT) private document: Document) {
   }
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   async refresh() {
+    this.imageToContainersMap.clear();
     this.images = (await images(this.ddClient) as Image[]);
     this.images.sort((aImage, bImage) => {
       const aDisplayValue = (aImage.RepoTags && aImage.RepoTags.length > 0) ? aImage.RepoTags[0] : aImage.Id;
@@ -65,6 +67,21 @@ export class AppComponent implements OnInit, AfterViewInit {
       const aDisplayValue = (aContainer.Image) ? aContainer.Image : aContainer.ImageID;
       const bDisplayValue = (bContainer.Image) ? bContainer.Image : bContainer.ImageID;
       return aDisplayValue.localeCompare(bDisplayValue);
+    });
+    // this.images.forEach(image => {
+    //   this.imageToContainersMap.set(image.Id, []);
+    // });
+    // Build image to containers map
+    this.containers.forEach(container => {
+      const imageId = container.ImageID;
+      if (imageId) {
+        let containers = this.imageToContainersMap.get(imageId);
+        if (!containers) {
+          containers = [];
+          this.imageToContainersMap.set(imageId, containers);
+        }
+        containers.push(container);
+      }
     });
   }
 
