@@ -6,13 +6,13 @@
     <p-table [value]="images" [styleClass]="'p-datatable-sm'">
       <ng-template #header>
         <tr>
-          <th class="!min-w-[80px] !w-[80px] !max-w-[80px] !text-center"><span class="font-bold">Div</span></th>
+          <th class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center"><span class="font-bold">Dive</span></th>
           <th><span class="font-bold">Image Tag</span></th>
         </tr>
       </ng-template>
       <ng-template #body let-image>
         <tr>
-          <td class="!min-w-[80px] !w-[80px] !max-w-[80px] !text-center">
+          <td class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center">
             <button (click)="dive(image.Id)"
                     class="hover:bg-blue-100 text-white font-bold p-1 rounded">
               <img width="24" src="icons/dive.svg" alt="Dive" title="Dive"/>
@@ -42,18 +42,18 @@
   <h1 class="self-start">
     <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
     Containers</h1>
-  <div class="self-stretch min-w-[98vw] !w-[80px] max-w-[98vw] overflow-scroll">
+  <div class="self-stretch min-w-[98vw] !w-[60px] max-w-[98vw] overflow-scroll">
     <p-table [value]="containers" [styleClass]="'p-datatable-sm'">
       <ng-template #header>
         <tr>
-          <th class="!min-w-[80px] !w-[80px] !max-w-[80px] !text-center"><span class="font-bold">Dive</span></th>
+          <th class="!min-w-[60px] !w-[60px] !max-w-[60px] !text-center"><span class="font-bold">Dive</span></th>
           <th><span class="font-bold">Image Tag</span></th>
           <th><span class="font-bold">Container</span></th>
         </tr>
       </ng-template>
       <ng-template #body let-container>
         <tr>
-          <td class="!min-w-[80px] !max-w-[80px] !text-center">
+          <td class="!min-w-[60px] !max-w-[60px] !text-center">
             <button (click)="dive(container.ImageID)"
                     class="hover:bg-blue-100 text-white font-bold p-1 rounded">
               <img width="24" src="icons/dive.svg" alt="Dive" title="Dive"/>
