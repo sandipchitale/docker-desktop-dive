@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
+import {DOCUMENT} from '@angular/common';
+
+import {createDockerDesktopClient} from "@docker/extension-api-client";
+
 import {RouterOutlet} from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
-import {createDockerDesktopClient} from "@docker/extension-api-client";
 
 import {
   images,
@@ -30,16 +33,25 @@ interface Container {
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   private ddClient = createDockerDesktopClient();
   protected images: Image[] = [];
   protected containers: Container[] = [];
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+  }
 
   ngOnInit(): void {
     this.refresh();
   }
 
-  protected readonly Object = Object;
+  ngAfterViewInit(): void {
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      this.document.querySelector('html')?.classList.remove('dark-theme')
+    } else {
+      this.document.querySelector('html')?.classList.add('dark-theme')
+    }
+  }
 
   async refresh() {
     this.images = (await images(this.ddClient) as Image[]);
