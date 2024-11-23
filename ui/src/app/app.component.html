@@ -8,7 +8,7 @@
         <tr>
           <th class="!min-w-[50px] !w-[50px] !max-w-[60px] !text-center">
             <span class="font-bold">Dive</span></th>
-          <th>
+          <th class="!min-w-[45vw] !w-[45vw] !max-w-[45vw]">
             <button (click)="navigateToImages()" class="hover:bg-blue-100 p-2" title="Go to Images"><i class="pi pi-send"></i></button>
             <span class="ml-2 font-bold">Image Tags</span>
           </th>
@@ -26,7 +26,7 @@
               <img width="16" src="icons/dive.svg" alt="Dive" title="Dive"/>
             </button>
           </td>
-          <td title="Id: {{ image.Id }}">
+          <td class="!min-w-[45vw] !w-[45vw] !max-w-[45vw]" title="Id: {{ image.Id }}">
             @if (image.RepoTags && image.RepoTags.length > 0) {
               <ul>
                 @for (repoTag of image.RepoTags; track repoTag) {
