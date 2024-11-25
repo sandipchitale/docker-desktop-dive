@@ -2,16 +2,16 @@
   <div class="self-start py-2 text-xl font-bold">
     <span>Images</span>
   </div>
-  <div class="self-stretch min-w-[98vw] max-w-[98vw] overflow-scroll">
+  <div class="self-stretch min-w-[99vw] w-[99vw] max-w-[99vw] min-h-[99vh] h-[99vh] max-w-[99vh] overflow-y-scroll overflow-x-hidden">
     <p-table [value]="images"
              [resizableColumns]="true"
-             [styleClass]="'p-datatable-sm'">
+             [styleClass]="'p-datatable-sm min-w-full w-full max-w-full overflow-hidden'">
       <ng-template #header>
         <tr>
-          <th class="!min-w-[50px] !w-[50px] !max-w-[60px] !text-center">
+          <th class="!min-w-[50px] !w-[50px] !max-w-[50px] !text-center">
             <span class="font-bold">Dive</span></th>
           <th pResizableColumn class="!min-w-[20vw] !w-[45vw] !max-w-[60vw]">
-            <button (click)="navigateToImages()" class="hover:bg-blue-100 p-2" title="Go to Images"><i class="pi pi-send"></i></button>
+            <button (click)="navigateToImages()" class="hover:bg-blue-100" title="Go to Images"><i class="pi pi-send"></i></button>
             <span class="ml-2 font-bold">Image Tags</span>
           </th>
           <th pResizableColumn>
@@ -33,16 +33,20 @@
               <ul>
                 @for (repoTag of image.RepoTags; track repoTag) {
                   <li class="text-nowrap text-ellipsis overflow-hidden">
-                    <button disabled (click)="navigateToImage(image.Image, image.RepoTags[0])" class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
-                    <span>{{ repoTag }}</span>
+                    <button disabled
+                            (click)="navigateToImage(image.Image, image.RepoTags[0])"
+                            class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
+                    <span class="ml-2">{{ repoTag }}</span>
                   </li>
                 }
               </ul>
             } @else {
               <ul>
                 <li>
-                  <button disabled (click)="navigateToImage(image.Image, image.RepoTags[0])" class="p-2" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
-                  {{ image.Id }}
+                  <button disabled
+                          (click)="navigateToImage(image.Image, image.RepoTags[0])"
+                          class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
+                  <span class="ml-2">{{ image.Id }}</span>
                 </li>
               </ul>
             }
@@ -54,8 +58,8 @@
                   @for (name of container.Names; track name) {
                     <li class="text-nowrap text-ellipsis overflow-hidden">
                       <button (click)="navigateToContainer(container.Id)"
-                              class="hover:bg-blue-100 p-2" title="Go to container"><i class="pi pi-send"></i></button>
-                      <span title="{{ name }}">{{ name }}</span>
+                              class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to container"><i class="pi pi-send"></i></button>
+                      <span class="ml-2" title="{{ name }}">{{ name }}</span>
                     </li>
                   }
                 }

@@ -36,7 +36,6 @@ interface Container {
 export class AppComponent implements OnInit, AfterViewInit {
   private ddClient = createDockerDesktopClient();
   protected images: Image[] = [];
-  protected containers: Container[] = [];
   protected imageToContainersMap: Map<string, Container[]> = new Map<string, Container[]>();
 
   constructor(@Inject(DOCUMENT) private document: Document) {
@@ -62,8 +61,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       const bDisplayValue = (bImage.RepoTags && bImage.RepoTags.length > 0) ? bImage.RepoTags[0] : bImage.Id;
       return aDisplayValue.localeCompare(bDisplayValue);
     });
-    this.containers = (await containers(this.ddClient) as Container[]);
-    this.containers.sort((aContainer, bContainer) => {
+    const cs = (await containers(this.ddClient) as Container[]);
+    cs.sort((aContainer, bContainer) => {
       const aDisplayValue = (aContainer.Image) ? aContainer.Image : aContainer.ImageID;
       const bDisplayValue = (bContainer.Image) ? bContainer.Image : bContainer.ImageID;
       return aDisplayValue.localeCompare(bDisplayValue);
@@ -72,7 +71,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     //   this.imageToContainersMap.set(image.Id, []);
     // });
     // Build image to containers map
-    this.containers.forEach(container => {
+    cs.forEach(container => {
       const imageId = container.ImageID;
       if (imageId) {
         let containers = this.imageToContainersMap.get(imageId);
