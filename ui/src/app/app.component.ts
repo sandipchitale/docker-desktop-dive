@@ -84,6 +84,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
+  goTo() {
+    this.ddClient.host.openExternal('https://www.linkedin.com/pulse/docker-desktop-dive-extension-sandip-chitale-ppuzc/');
+  }
+
   async dive(Id: string) {
     await dive(this.ddClient, Id);
   }
