@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "docker-dive": {
+    "docker-desktop-dive": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/docker-dive",
+            "outputPath": "dist/docker-desktop-dive",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "baseHref": "./",
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "docker-dive:build:production"
+              "buildTarget": "docker-desktop-dive:build:production"
             },
             "development": {
-              "buildTarget": "docker-dive:build:development"
+              "buildTarget": "docker-desktop-dive:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -1,4 +1,4 @@
-# Dive
+# Dive Docker Desktop Extension
 
 # How to install
 

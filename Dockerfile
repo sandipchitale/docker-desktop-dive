@@ -29,5 +29,5 @@ COPY docker-compose.yaml .
 COPY metadata.json .
 COPY dive.svg .
 COPY /dive /dive
-COPY --from=client-builder /ui/dist/docker-dive/browser ui
+COPY --from=client-builder /ui/dist/docker-desktop-dive/browser ui
 
