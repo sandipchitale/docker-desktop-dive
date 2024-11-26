@@ -4,13 +4,15 @@
 
 ## Without debug mode
 
-- make && docker extension install sandipchitale/docker-desktop-dive:1.0.0 -f
-- make && docker extension update sandipchitale/docker-desktop-dive:1.0.0 -f
+```
+make && docker extension $(docker extension ls | grep --silent docker-desktop-dive ; if [  $? -eq 0 ] ; then echo 'update' ; else echo 'install' ; fi)  sandipchitale/docker-desktop-dive:1.0.0 -f
+```
 
 ## With debug mode
 
-- make && docker extension install sandipchitale/docker-desktop-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-desktop-dive
-- make && docker extension update sandipchitale/docker-desktop-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-desktop-dive
+```
+make && docker extension $(docker extension ls | grep --silent docker-desktop-dive ; if [  $? -eq 0 ] ; then echo 'update' ; else echo 'install' ; fi)  sandipchitale/docker-desktop-dive:1.0.0 -f && docker extension dev debug sandipchitale/docker-desktop-dive
+```
 
 This repository defines an example of a Docker extension. The files in this repository have been automatically generated as a result of running `docker extension init`.
 

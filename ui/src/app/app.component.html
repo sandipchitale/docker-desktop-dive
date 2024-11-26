@@ -1,77 +1,75 @@
-<div class="w-screen h-screen p-4 grid grid-rows-[auto_1fr] content-start">
-  <div class="py-2 text-xl font-bold">
-    <span>Images</span>
+<div class="w-screen h-screen p-4 grid grid-rows-[auto_1fr] gap-y-4 ontent-start">
+  <div class="flex">
+    <span class="text-xl font-bold">Images</span>
   </div>
-  <div>
-    <p-table [value]="images"
-             [resizableColumns]="true"
-             [styleClass]="'p-datatable-sm min-w-full'">
-      <ng-template #header>
-        <tr>
-          <th class="!min-w-[50px] !w-[50px] !max-w-[50px] !text-center">
-            <span class="font-bold">Dive</span></th>
-          <th pResizableColumn class="!min-w-[20vw] !w-[45vw] !max-w-[60vw]">
-            <button (click)="navigateToImages()" class="hover:bg-blue-100" title="Go to Images"><i class="pi pi-send"></i></button>
-            <span class="ml-2 font-bold">Image Tags</span>
-          </th>
-          <th pResizableColumn>
-            <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to Containers"><i class="pi pi-send"></i></button>
-            <span class="font-bold">Containers</span>
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-image>
-        <tr class="!text-sm">
-          <td class="!min-w-[50px] !w-[50px] !max-w-[50px] !text-center !p-0">
-            <button (click)="dive(image.Id)"
-                    class="hover:bg-blue-100 text-white font-bold p-1 rounded">
-              <img width="16" src="icons/dive.svg" alt="Dive" title="Dive"/>
-            </button>
-          </td>
-          <td class="!min-w-[20vw] !w-[45vw] !max-w-[60vw] !p-0" title="Id: {{ image.Id }}">
-            @if (image.RepoTags && image.RepoTags.length > 0) {
-              <ul>
-                @for (repoTag of image.RepoTags; track repoTag) {
-                  <li class="text-nowrap text-ellipsis overflow-hidden">
-                    <button disabled
-                            (click)="navigateToImage(image.Image, image.RepoTags[0])"
-                            class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
-                    <span class="ml-2">{{ repoTag }}</span>
-                  </li>
-                }
-              </ul>
-            } @else {
-              <ul>
-                <li>
+  <p-table [value]="images"
+           [resizableColumns]="true"
+           [styleClass]="'p-datatable-sm min-w-full'">
+    <ng-template #header>
+      <tr>
+        <th class="!min-w-[50px] !w-[50px] !max-w-[50px] !text-center">
+          <span class="font-bold">Dive</span></th>
+        <th pResizableColumn class="!min-w-[20vw] !w-[45vw] !max-w-[60vw]">
+          <button (click)="navigateToImages()" class="hover:bg-blue-100" title="Go to Images"><i class="pi pi-send"></i></button>
+          <span class="ml-2 font-bold">Image Tags</span>
+        </th>
+        <th pResizableColumn>
+          <button (click)="navigateToContainers()" class="hover:bg-blue-100 p-2" title="Go to Containers"><i class="pi pi-send"></i></button>
+          <span class="font-bold">Containers</span>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-image>
+      <tr class="!text-sm">
+        <td class="!min-w-[50px] !w-[50px] !max-w-[50px] !text-center !p-0">
+          <button (click)="dive(image.Id)"
+                  class="hover:bg-blue-100 text-white font-bold p-1 rounded">
+            <img width="16" src="icons/dive.svg" alt="Dive" title="Dive"/>
+          </button>
+        </td>
+        <td class="!min-w-[20vw] !w-[45vw] !max-w-[60vw] !p-0" title="Id: {{ image.Id }}">
+          @if (image.RepoTags && image.RepoTags.length > 0) {
+            <ul>
+              @for (repoTag of image.RepoTags; track repoTag) {
+                <li class="text-nowrap text-ellipsis overflow-hidden">
                   <button disabled
                           (click)="navigateToImage(image.Image, image.RepoTags[0])"
                           class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
-                  <span class="ml-2">{{ image.Id }}</span>
+                  <span class="ml-2">{{ repoTag }}</span>
                 </li>
-              </ul>
-            }
-          </td>
-          <td class="!p-0" title="Id: {{ image.Id }}">
-            @if (imageToContainersMap.get(image.Id)) {
-              <ul>
-                @for (container of imageToContainersMap.get(image.Id); track container) {
-                  @for (name of container.Names; track name) {
-                    <li class="text-nowrap text-ellipsis overflow-hidden">
-                      <button (click)="navigateToContainer(container.Id)"
-                              class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to container"><i class="pi pi-send"></i></button>
-                      <span class="ml-2" title="{{ name }}">{{ name }}</span>
-                    </li>
-                  }
+              }
+            </ul>
+          } @else {
+            <ul>
+              <li>
+                <button disabled
+                        (click)="navigateToImage(image.Image, image.RepoTags[0])"
+                        class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to image - (not working due to a API bug)"><i class="pi pi-send"></i></button>
+                <span class="ml-2">{{ image.Id }}</span>
+              </li>
+            </ul>
+          }
+        </td>
+        <td class="!p-0" title="Id: {{ image.Id }}">
+          @if (imageToContainersMap.get(image.Id)) {
+            <ul>
+              @for (container of imageToContainersMap.get(image.Id); track container) {
+                @for (name of container.Names; track name) {
+                  <li class="text-nowrap text-ellipsis overflow-hidden">
+                    <button (click)="navigateToContainer(container.Id)"
+                            class="hover:bg-blue-100 ml-2 p-1 rounded" title="Go to container"><i class="pi pi-send"></i></button>
+                    <span class="ml-2" title="{{ name }}">{{ name }}</span>
+                  </li>
                 }
-              </ul>
-            } @else {
-              <ul>
-                <li>&nbsp;</li>
-              </ul>
-            }
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
+              }
+            </ul>
+          } @else {
+            <ul>
+              <li>&nbsp;</li>
+            </ul>
+          }
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
